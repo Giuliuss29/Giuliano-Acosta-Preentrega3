@@ -6,4 +6,5 @@ urlpatterns = [
     path('/peliculas',peliculas,name='peliculas'),
     
     
+    
 ]
