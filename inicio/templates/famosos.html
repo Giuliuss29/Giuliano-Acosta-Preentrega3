@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block h1_header %}
+FAMOSOS
+{% endblock h1_header %}
+
+{% block main %}
+
+<p>
+    <input type="text" placeholder='Nombre'>
+</p>
+
+<p>
+    <input type="text" placeholder='Profesion'>
+</p>
+
+
+<form action={% url "famosos" %}>
+    <input type="submit" value"Enviar">
+</form>
+
+{% endblock main %}
+

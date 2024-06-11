@@ -29,8 +29,8 @@
                     <ul class="navbar-nav ms-auto">
                 
                         <li class="nav-item"><a class="nav-link" href="{% url 'peliculas' %}">Peliculas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "series" %}">Series</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "famosos" %}">Famosos</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,6 +46,10 @@
                 </div>
             </div>
         </header>
+        <main>
+            {% block main %}{% endblock main %}
+        </main>
+        
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5"></div></footer>
         <!-- Bootstrap core JS-->

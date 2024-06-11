@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+
 {% block h1_header %}
-Peliculas
+SERIES
 {% endblock h1_header %}
+
 
 {% block main %}
 
@@ -17,10 +19,13 @@ Peliculas
     <input type="text" placeholder='Genero'>
 </p>
 
-<form action={% url "peliculas" %}>
+<p>
+    <input type="text" placeholder='Temporadas'>
+</p>
+
+<form action={% url "series" %}>
     <input type="submit" value"Enviar">
 </form>
 
 {% endblock main %}
-
 
