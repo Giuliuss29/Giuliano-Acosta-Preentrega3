@@ -5,17 +5,10 @@ FAMOSOS
 
 {% block main %}
 
-<p>
-    <input type="text" placeholder='Nombre'>
-</p>
-
-<p>
-    <input type="text" placeholder='Profesion'>
-</p>
-
-
-<form action={% url "famosos" %}>
-    <input type="submit" value"Enviar">
+<form method="post" enctype="multipart/form-data"> 
+ {% csrf_token %}
+ {{formulario.as_p}}
+ <button type='submit'>Enviar</button>     
 </form>
 
 {% endblock main %}

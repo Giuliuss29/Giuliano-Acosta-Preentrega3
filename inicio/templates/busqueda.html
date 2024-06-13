@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block h1_header %}
+Busqueda
+{% endblock h1_header %}
+
+{% block main %}
+
+<form method="post"> 
+ {% csrf_token %}
+ <label for="titulo_pelicula">
+  Buscar pelicula:
+ </label>
+ <input type="text" name='titulo_pelicula' id='titulo_pelicula' placeholder='Pelicula'>
+ <button type='submit'>Buscar pelicula</button>     
+</form>
+
+<form method="post"> 
+ {% csrf_token %}
+ <label for="titulo_serie">
+  Buscar serie:
+ </label>
+ <input type="text" name='titulo_serie' id='titulo_serie' placeholder='serie'>
+ <button type='submit'>Buscar serie</button>     
+</form>
+
+
+<form method="post"> 
+ {% csrf_token %}
+ <label for="nombre_famoso">
+  Buscar famoso:
+ </label>
+ <input type="text" name='nombre_famoso' id='nombre_famoso' placeholder='famoso'>
+ <button type='submit'>Buscar famoso</button>     
+</form>
+
+{% endblock main %}

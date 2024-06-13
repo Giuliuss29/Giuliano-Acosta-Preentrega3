@@ -1,44 +1,78 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from inicio.forms import FormPelicula, FormSeries, FormFamosos
+from inicio.models import Peliculas, Series, Famosos
+
 
 def inicio(request):
     return render(request,'index.html' )
 
 def peliculas(request):
-    return render(request,'peliculas.html' )
     
-    if datos.method == 'POST':
-        formulario = FormPelicula(request.POST)
+    if request.method == 'POST':
+        formulario = FormPelicula(request.POST,request.FILES)
         if formulario.is_valid():
-            datos = formulario.cleaned_data
-            pelicula = Peliucla(titulo=datos.POST.get('titulo'), director=datos.POST.GET('director'), genero=datos.POST.GET('genero'))
-            pelicula.save
-    formulario = FormPelicula()
-    return render(request,'inicio/peliculas.html',{'formulario':formulario})        
-
-
+            pelicula=formulario.save(commit=False)
+            pelicula.save()
+            return redirect('inicio')
+    else: 
+        formulario=FormPelicula()
+    return render(request,'peliculas.html',{'formulario':formulario})        
+ 
 def series(request):
-    return render(request,'series.html')
     
-    if datos.method == 'POST':
-        formulario = FormSeries(request.POST)
+    if request.method == 'POST':
+        formulario = FormSeries(request.POST,request.FILES)
         if formulario.is_valid():
-            datos = formulario.cleaned_data
-            series = Serie(titulo=datos.POST.get('titulo'), director=datos.POST.GET('director'), genero=datos.POST.GET('genero'), temporadas=datos.Post.get('temporadas'))
-            series.save
-    formulario = FormSeries()
-    return render(request,'inicio/series.html',{'formulario':formulario}) 
+            serie=formulario.save(commit=False)
+            serie.save()
+            return redirect('inicio')
+    else: 
+        formulario=FormSeries()
+    return render(request,'series.html',{'formulario':formulario})  
 
 
 def famosos(request):
-    return render(request,'famosos.html')
 
-    if datos.method == 'POST':
-        formulario = FormFamosos(request.POST)
+    if request.method == 'POST':
+        formulario = FormFamosos(request.POST,request.FILES)
         if formulario.is_valid():
-            datos = formulario.cleaned_data
-            famosos = Famosos(nombre=datos.POST.get('nombre'), profesion=datos.POST.GET('profesion'))
-            famosos.save
-    formulario = FormFamosos()
-    return render(request,'inicio/famosos.html',{'formulario':formulario}) 
+            famosos=formulario.save(commit=False)
+            famosos.save()
+            return redirect('inicio')
+    else: 
+        formulario=FormFamosos()
+    return render(request,'famosos.html',{'formulario':formulario}) 
+
+
+def buscar(request):
+    
+    peliculas=[]
+    series=[]
+    famosos=[]
+    
+    if request.method=='POST':
+       titulo_pelicula=request.POST.get('titulo_pelicula','')
+       titulo_serie=request.POST.get('titulo_serie','')
+       nombre_famoso=request.POST.get('nombre_famoso','')
+    
+       
+    
+       
+       if titulo_pelicula:
+            peliculas = Peliculas.objects.filter(titulo__icontains = titulo_pelicula)
+       if titulo_serie:
+           series = Series.objects.filter(titulo__icontains = titulo_serie)
+       if nombre_famoso:
+           famosos = Famosos.objects.filter(nombre__icontains = nombre_famoso)
+       return render(request,'resultados.html',{ 
+            'peliculas':peliculas,
+            'series':series,
+            'famosos':famosos})
+    else:
+        return render(request,'busqueda.html')         
+           
+       
+       
+    
+       
     

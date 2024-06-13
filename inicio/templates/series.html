@@ -7,24 +7,10 @@ SERIES
 
 {% block main %}
 
-<p>
-    <input type="text" placeholder='Titulo'>
-</p>
-
-<p>
-    <input type="text" placeholder='Director'>
-</p>
-
-<p>
-    <input type="text" placeholder='Genero'>
-</p>
-
-<p>
-    <input type="text" placeholder='Temporadas'>
-</p>
-
-<form action={% url "series" %}>
-    <input type="submit" value"Enviar">
+<form method="post" enctype="multipart/form-data"> 
+ {% csrf_token %}
+ {{formulario.as_p}}
+ <button type='submit'>Enviar</button>     
 </form>
 
 {% endblock main %}

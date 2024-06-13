@@ -5,20 +5,10 @@ Peliculas
 
 {% block main %}
 
-<p>
-    <input type="text" placeholder='Titulo'>
-</p>
-
-<p>
-    <input type="text" placeholder='Director'>
-</p>
-
-<p>
-    <input type="text" placeholder='Genero'>
-</p>
-
-<form action={% url "peliculas" %}>
-    <input type="submit" value"Enviar">
+<form method="post" enctype="multipart/form-data"> 
+ {% csrf_token %}
+ {{formulario.as_p}}
+ <button type='submit'>Enviar</button>     
 </form>
 
 {% endblock main %}

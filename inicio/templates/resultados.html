@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block h1_header %}
+Resultados
+{% endblock h1_header %}
+
+{% block main %}
+
+{% if peliculas %}
+    <h3>Peliculas</h3>
+    <ul> 
+        {% for pelicula in peliculas  %}
+            <li>{{pelicula.titulo}} - {{pelicula.director}} - {{pelicula.genero}}</li>
+        {%empty%}
+            <li>No hay resultados</li> 
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if series %}
+    <h3>Series</h3>
+    <ul> 
+        {% for serie in series  %}
+            <li>{{serie.titulo}} - {{serie.director}} - {{serie.genero}} - {{serie.temporadas}}</li>
+        {%empty%}
+            <li>No hay resultados</li> 
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+{% if famosos %}
+    <h3>Famosos</h3>
+    <ul> 
+        {% for famoso in famosos  %}
+            <li>{{famoso.nombre}} - {{famoso.profesion}}</li>
+        {%empty%}
+            <li>No hay resultados</li> 
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock main %}
